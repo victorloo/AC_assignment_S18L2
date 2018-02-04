@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="utf-8">
+  <title>電燈開關</title>
+</head>
+<body>
+  <div class="container">
+    <img id="image" src="image/on.jpg">
+    <button class="button" onclick="toggleLight();">
+      ON
+      <br>
+      -
+      <br>
+      OFF
+    </button>
+  </div>
+  <div class="div" id="timer">
+    5
+  </div>
+  <script>
+    var state = true;
+    function toggleLight() {
+      var image = document.getElementById("image");
+      state = !state;
+      image.src = state ? "image/on.jpg" : "image/off.jpg";
+    }
+
+    var timeLeft = 5;
+    function countDownTimer() {
+      timeLeft = timeLeft - 1;
+      if (timeLeft <= 0) {
+        document.getElementById("image").src = "image/off.jpg";
+        clearInterval(id);
+      }
+      document.getElementById("timer").innerHTML = timeLeft;
+    }
+    var id = setInterval(countDownTimer, 1000);
+  </script>
+</body>
+</html>
