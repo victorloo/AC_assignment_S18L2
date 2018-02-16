@@ -1,41 +1,101 @@
 <!DOCTYPE html>
 <html lang="zh">
+
 <head>
   <meta charset="utf-8">
   <title>電燈開關</title>
+  <style>
+    .button {
+      margin-left: 10px;
+      display: inline-block;
+      padding: 45px 25px;
+      font-size: 24px;
+      cursor: pointer;
+      text-align: center;
+      text-decoration: none;
+      outline: none;
+      color: #fff;
+      background-color: #1E90FF;
+      border: none;
+      border-radius: 15px;
+      box-shadow: 0 9px #999;
+    }
+
+    .button:hover {
+      background-color: #3e8e41
+    }
+
+    .button:active {
+      background-color: #3e8e41;
+      box-shadow: 0 5px #666;
+      transform: translateY(4px);
+    }
+
+    .div {
+      margin-left: 10px;
+      padding: 25px 32px;
+      font-size: 24px;
+      text-align: center;
+      color: #fff;
+      background-color: #1E90FF;
+      border-style: solid;
+      border-color: #4bacf2;
+      border-width: 7px;
+    }
+  </style>
 </head>
+
 <body>
-  <div class="container">
-    <img id="image" src="image/on.jpg">
-    <button class="button" onclick="toggleLight();">
-      ON
-      <br>
-      -
-      <br>
-      OFF
-    </button>
-  </div>
-  <div class="div" id="timer">
-    5
-  </div>
+  <table style="margin:0px auto;padding: 10px;border:2px solid;border-color:#1E90FF">
+    <tbody>
+      <tr>
+        <td rowspan="2">
+          <!--- 照片 -->
+          <img id="image" src="image/on.jpg" width="400" height="300">
+        </td>
+        <td>
+          <!--- 倒數計時器 -->
+          <div class="div" id="timer">5</div>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <!--- 開關燈按鈕 -->
+          <button class="button" onclick="toggleLight();">ON
+            <br>-
+            <br>OFF</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
   <script>
-    var state = true;
+    "use strict";
+    var state = "on";
+
     function toggleLight() {
       var image = document.getElementById("image");
-      state = !state;
-      image.src = state ? "image/on.jpg" : "image/off.jpg";
+      
+      if ( state == "on" ) {
+        state = "off";
+        image.src = "image/off.jpg";
+      } else {
+        state = "on";
+        image.src = "image/on.jpg";
+      }
     }
 
     var timeLeft = 5;
+
     function countDownTimer() {
       timeLeft = timeLeft - 1;
       if (timeLeft <= 0) {
         document.getElementById("image").src = "image/off.jpg";
-        clearInterval(id);
+        clearInterval(setting);
       }
       document.getElementById("timer").innerHTML = timeLeft;
     }
-    var id = setInterval(countDownTimer, 1000);
+    var setting = setInterval(countDownTimer, 1000);
   </script>
 </body>
+
 </html>
