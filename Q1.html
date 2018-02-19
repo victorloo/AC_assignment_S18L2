@@ -55,7 +55,7 @@
         </td>
         <td>
           <!--- 倒數計時器 -->
-          <div class="div" id="timer">5</div>
+          <div class="div" id="timer">###</div>
         </td>
       </tr>
       <tr>
@@ -68,14 +68,35 @@
       </tr>
     </tbody>
   </table>
+  <div class="enter" style="margin:0px auto;padding-left: 40px; width:720px">
+    <form id="form" action="">
+      <table>
+        <tr>
+          <td>
+            <label>請輸入倒數秒數，勿超過1000秒</label>
+          </td>
+          <td>
+            <input type="text" id="nric">
+          </td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>
+            <input type="button" name="myButton" value="驗證" onclick="validate()">
+          </td>
+        </tr>
+      </table>
+    </form>
+    <p id="result"></p>
+  </div>
   <script>
     "use strict";
     var state = "on";
-
+    /*開關*/
     function toggleLight() {
       var image = document.getElementById("image");
-      
-      if ( state == "on" ) {
+
+      if (state == "on") {
         state = "off";
         image.src = "image/off.jpg";
       } else {
@@ -84,17 +105,44 @@
       }
     }
 
-    var timeLeft = 5;
 
-    function countDownTimer() {
-      timeLeft = timeLeft - 1;
-      if (timeLeft <= 0) {
-        document.getElementById("image").src = "image/off.jpg";
-        clearInterval(setting);
+    /*驗證*/
+    function validate() {
+      var nric = document.getElementById("nric");
+      var code = nric.value;
+      if (code == "") {
+        alert("輸入框不得空白");
+        return;
+      } else if (isNaN(code)) {
+        alert("請輸入數字");
+        return;
+      } else if (code.length >= 4) {
+        alert("請勿輸入1000秒以上");
+        return;
+      } else {
+        document.getElementById("result").innerHTML = "通過驗證";
+        var timeLeft = parseInt(code, 10);
+        document.getElementById("timer").innerHTML = timeLeft;
+        function countDownTimer() {
+          timeLeft = timeLeft - 1;
+          if (timeLeft <= 0) {
+            document.getElementById("image").src = "image/off.jpg";
+            clearInterval(setting);
+          }
+          document.getElementById("timer").innerHTML = timeLeft;
+        }
+        var setting = setInterval(countDownTimer, 1000);
+        form.myButton.disabled = true;
       }
-      document.getElementById("timer").innerHTML = timeLeft;
-    }
-    var setting = setInterval(countDownTimer, 1000);
+      
+}
+  
+
+    /*倒數*/
+
+
+
+
   </script>
 </body>
 
