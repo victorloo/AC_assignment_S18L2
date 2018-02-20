@@ -68,31 +68,37 @@
       </tr>
     </tbody>
   </table>
-  <div class="enter" style="margin:0px auto;padding-left: 40px; width:720px">
+  <div class="enter" style="margin:0px auto;margin-top: 20px;padding-left: 40px; width:540px;border:2px solid;border-color:#E9A6A6 ">
     <form id="form" action="">
       <table>
         <tr>
-          <td>
+          <th>
             <label>請輸入倒數秒數，勿超過1000秒</label>
-          </td>
+          </th>
+          
+        </tr>
+        <tr>
           <td>
             <input type="text" id="nric">
           </td>
         </tr>
         <tr>
-          <td></td>
           <td>
             <input type="button" name="myButton" value="驗證" onclick="validate()">
+            <span id="result"></span>
           </td>
+        </tr>
+        <tr>
+          <td><a href="../index.html">回到首頁</a></td>
         </tr>
       </table>
     </form>
-    <p id="result"></p>
+    
   </div>
   <script>
     "use strict";
-    var state = "on";
-    /*開關*/
+    var state = "on";  //開關的變數
+    //開關
     function toggleLight() {
       var image = document.getElementById("image");
 
@@ -104,7 +110,6 @@
         image.src = "image/on.jpg";
       }
     }
-
 
     /*驗證*/
     function validate() {
@@ -121,8 +126,9 @@
         return;
       } else {
         document.getElementById("result").innerHTML = "通過驗證";
-        var timeLeft = parseInt(code, 10);
+        var timeLeft = parseInt(code, 10); //顯示倒數時間
         document.getElementById("timer").innerHTML = timeLeft;
+        //倒數
         function countDownTimer() {
           timeLeft = timeLeft - 1;
           if (timeLeft <= 0) {
@@ -134,15 +140,8 @@
         var setting = setInterval(countDownTimer, 1000);
         form.myButton.disabled = true;
       }
-      
-}
-  
 
-    /*倒數*/
-
-
-
-
+    }
   </script>
 </body>
 
