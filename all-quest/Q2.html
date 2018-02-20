@@ -2,16 +2,71 @@
 
 <head>
   <title>事件驅動 - (3) 實作：表單驗證</title>
+</head>
+
+<body>
+  <div style="margin:0px auto;padding-left: 40px; width:720px">
+    <form id="form" action="">
+      <table>
+        <tr>
+          <td>
+            <label>身分證字號</label>
+          </td>
+          <td>
+            <input type="text" id="nric">
+          </td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>
+            <input type="button" value="驗證" onclick="validate()" />
+
+          </td>
+        </tr>
+      </table>
+    </form>
+    <p id="result"></p>
+    <p><a href="../index.html">回到首頁</a></p>
+  </div>
+
   <script>
     "use strict";
     function validate() {
       var nric = document.getElementById("nric");
       var code = nric.value;
+
       if (code == "") {
         alert("身分證欄位不能空白！");
         return;
-      } else if (!isNaN(code)) {
-        alert("身分證欄位不是全都數字吧！");
+      } else if (!isNaN(code[0])) {
+        alert("身分證應該是英文開頭");
+        return;
+      } else if (isNaN(code[1])) {
+        alert("身分證理當接數字吧！");
+        return;
+      } else if (isNaN(code[2])) {
+        alert("身分證理當接數字吧！");
+        return;
+      } else if (isNaN(code[3])) {
+        alert("身分證理當接數字吧！");
+        return;
+      } else if (isNaN(code[4])) {
+        alert("身分證理當接數字吧！");
+        return;
+      } else if (isNaN(code[5])) {
+        alert("身分證理當接數字吧！");
+        return;
+      } else if (isNaN(code[6])) {
+        alert("身分證理當接數字吧！");
+        return;
+      } else if (isNaN(code[7])) {
+        alert("身分證理當接數字吧！");
+        return;
+      } else if (isNaN(code[8])) {
+        alert("身分證理當接數字吧！");
+        return;
+      } else if (isNaN(code[9])) {
+        alert("身分證理當接數字吧！");
         return;
       } else if (code.length != 10) {
         alert("你輸入的身分證字號長度不正確！");
@@ -26,14 +81,13 @@
           return;
         }
       }
-      var array = code.split("");
-      if (array[1] == 1) {
+      //驗證是男是女
+
+      if (code[1] == 1) {
         document.getElementById("result").innerHTML = "某男通過驗證";
       } else {
         document.getElementById("result").innerHTML = "某女通過驗證";
       }
-      
-
     }
     // 額外查詢縣市的功能
     function findCity(char) {
@@ -69,31 +123,6 @@
       }
     }
   </script>
-</head>
-
-<body>
-  <div style="margin:0px auto;padding-left: 40px; width:720px">
-    <form id="form" action="">
-      <table>
-        <tr>
-          <td>
-            <label>身分證字號</label>
-          </td>
-          <td>
-            <input type="text" id="nric">
-          </td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>
-            <input type="button" value="驗證" onclick="validate()" />
-
-          </td>
-        </tr>
-      </table>
-    </form>
-    <p id="result"></p>
-  </div>
 </body>
 
 </html>
