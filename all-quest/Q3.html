@@ -6,6 +6,9 @@
 
 <body>
   <div>
+    <p>
+      <a href="../index.html">回到首頁</a>
+    </p>
     <input type="text" id="input">
     <button onclick="createToDo()"> + </button>
 
@@ -40,7 +43,7 @@
       todo.appendChild(replaceButton);
       var removeButton = document.createElement("button");
       removeButton.onclick = function () {
-        if (confirm("是否確定完成？")) {
+        if (confirm("是否刪除？")) {
           alert("了解，刪除該則list")
           this.parentNode.parentNode.removeChild(this.parentNode);
         } else {
